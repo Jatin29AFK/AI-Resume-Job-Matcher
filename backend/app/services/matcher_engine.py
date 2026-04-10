@@ -1,8 +1,12 @@
+from functools import lru_cache
 from rapidfuzz import fuzz
 from sentence_transformers import SentenceTransformer, util
 from app.services.extractor import normalize_skill
 
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+@lru_cache(maxsize=1)
+def get_embedding_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
 
 
 def exact_skill_match(resume_skills: list[str], jd_skills: list[str]) -> list[str]:
@@ -40,8 +44,11 @@ def fuzzy_skill_match(
 
 
 def semantic_text_similarity(resume_text: str, jd_text: str) -> float:
+    embedding_model = get_embedding_model()
+
     resume_embedding = embedding_model.encode(resume_text, convert_to_tensor=True)
     jd_embedding = embedding_model.encode(jd_text, convert_to_tensor=True)
+
     similarity = util.cos_sim(resume_embedding, jd_embedding)
     return float(similarity.item())
 
