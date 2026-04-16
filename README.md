@@ -235,157 +235,98 @@ ai-resume-matcher/
 
 ---
  
-Important Modules
+## Important Modules
  
-Backend
+### Backend
+- `analyzer.py`
+- `matcher_engine.py`
+- `resume_structurer.py`
+- `jd_guardrails.py`
+- `jd_url_extractor.py`
+- `ats_auditor.py`
+- `keyword_coverage.py`
+- `shortlist_simulator.py`
+- `multi_jd_compare.py`
+- `tailor_planner.py`
+- `tailor_service.py`
+- `tailor_validator.py`
+- `resume_tailor_llm.py`
+- `tailor_prompt_builder.py`
+- `visitor_counter.py`
  
-analyzer.py
- 
-matcher_engine.py
- 
-resume_structurer.py
- 
-jd_guardrails.py
- 
-jd_url_extractor.py
- 
-ats_auditor.py
- 
-keyword_coverage.py
- 
-shortlist_simulator.py
- 
-multi_jd_compare.py
- 
-tailor_planner.py
- 
-tailor_service.py
- 
-tailor_validator.py
- 
-resume_tailor_llm.py
- 
-tailor_prompt_builder.py
- 
-visitor_counter.py
- 
- 
-Frontend
- 
-UploadForm
- 
-ResultTabs
- 
-MiniSummaryCards
- 
-ATSAuditPanel
- 
-KeywordCoveragePanel
- 
-ShortlistRiskPanel
- 
-MultiJDComparePanel
- 
-TailoredResumePanel
- 
-TailorComparisonPanel
- 
-EvidenceDetailsPanel
- 
-ExportTailoredResumeButtons
- 
-ThemeToggle
- 
-AppBrand
- 
- 
+### Frontend
+- `UploadForm`
+- `ResultTabs`
+- `MiniSummaryCards`
+- `ATSAuditPanel`
+- `KeywordCoveragePanel`
+- `ShortlistRiskPanel`
+- `MultiJDComparePanel`
+- `TailoredResumePanel`
+- `TailorComparisonPanel`
+- `EvidenceDetailsPanel`
+- `ExportTailoredResumeButtons`
+- `ThemeToggle`
+- `AppBrand`
  
 ---
  
-Core Workflow
+## Core Workflow
  
-1. User uploads a resume
- 
- 
-2. User pastes a JD or fetches one from a URL
- 
- 
+1. User uploads a resume  
+2. User pastes a JD or fetches one from a URL  
 3. HireFit analyzes:
- 
-skill alignment
- 
-evidence support
- 
-experience fit
- 
-ATS readiness
- 
-recruiter-facing risk
- 
- 
- 
-4. User reviews fit and gaps
- 
- 
-5. User generates a safer optimized draft
- 
- 
-6. User compares before vs after
- 
- 
-7. User exports the optimized version
- 
- 
- 
+   - skill alignment
+   - evidence support
+   - experience fit
+   - ATS readiness
+   - recruiter-facing risk
+4. User reviews fit and gaps  
+5. User generates a safer optimized draft  
+6. User compares before vs after  
+7. User exports the optimized version  
  
 ---
  
-Screenshots
-
-
+## Screenshots
  
-Overview Tab
- 
+### Overview Tab
 ![Overview](./screenshots/overview.png)
 ![Overview](./screenshots/overview1.png)
-
  
-Recruiter View
- 
+### Recruiter View
 ![Recruiter View](./screenshots/recruiter-view.png)
 ![Recruiter View](./screenshots/recruiter-view2.png)
  
-Optimized Resume Tab
- 
+### Optimized Resume Tab
 ![Optimized Resume](./screenshots/optimized-resume.png)
 ![Optimized Resume](./screenshots/optimized-resume2.png)
  
-Deep Dive Tab
- 
+### Deep Dive Tab
 ![Deep Dive](./screenshots/deep-dive1.png)
 ![Deep Dive](./screenshots/deep-dive2.png)
 ![Deep Dive](./screenshots/deep-dive3.png)
  
-Multi-JD Compare
- 
+### Multi-JD Compare
 ![Compare Jobs](./screenshots/compare-jobs.png)
- 
  
 ---
  
-Local Setup
+## Local Setup
  
-Backend
+### Backend
  
+```bash
 cd backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
- 
+ ```
+
 Create a .env using .env.example.
  
-Example:
+## Example:
  
 APP_NAME=HireFit API
 APP_VERSION=1.0.0
@@ -396,13 +337,15 @@ GEMINI_MODEL=gemini-2.5-flash
  
  
 ---
+  
+### Frontend
  
-Frontend
- 
+```bash
 cd frontend
 npm install
 npm run dev
- 
+ ```
+
 Create a frontend .env:
  
 VITE_API_BASE_URL=http://127.0.0.1:8000
@@ -410,9 +353,9 @@ VITE_API_BASE_URL=http://127.0.0.1:8000
  
 ---
  
-Deployment
+### Deployment
  
-Frontend
+## Frontend
  
 Deploy on Vercel.
  
@@ -420,7 +363,7 @@ Required environment variable:
  
 VITE_API_BASE_URL=https://your-render-backend-url.onrender.com
  
-Backend
+## Backend
  
 Deploy on Render.
  
@@ -442,7 +385,7 @@ GEMINI_MODEL
  
 ---
  
-Validation and Guardrails
+## Validation and Guardrails
  
 HireFit includes both frontend and backend validation for job descriptions.
  
@@ -469,7 +412,7 @@ This helps reduce false errors for real technical job descriptions.
  
 ---
  
-Safety Notes
+## Safety Notes
  
 HireFit should be used as a resume improvement assistant, not as a final truth engine.
  
@@ -487,7 +430,7 @@ treat optimization as guided editing, not automatic truth
  
 ---
  
-Current Strengths
+## Current Strengths
  
 safer than naive AI resume rewriters
  
@@ -505,7 +448,7 @@ useful for iterative improvement
  
 ---
  
-Current Limitations
+## Current Limitations
  
 JD URL extraction can still be noisy on some job portals
  
@@ -521,7 +464,7 @@ some domain-specific resumes need stronger customization
  
 ---
  
-Future Improvements
+## Future Improvements
  
 stronger site-specific JD extraction
  
@@ -547,7 +490,7 @@ downloadable branded report PDFs
  
 ---
  
-Ideal Use Cases
+## Ideal Use Cases
  
 students preparing for campus placements
  
@@ -563,9 +506,9 @@ users comparing one resume across multiple job opportunities
  
 ---
  
-Author
+### Author
  
-Created by Jatin Shukla
+### Created by Jatin Shukla
  
  
 ---
