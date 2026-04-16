@@ -231,8 +231,8 @@ ai-resume-matcher/
 │   └── .env.example
 ├── README.md
 └── .gitignore
- 
- 
+```
+
 ---
  
 Important Modules
