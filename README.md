@@ -13,6 +13,11 @@ HireFit
 </p>
 ---
  
+## Live Demo
+ 
+- Frontend: https://ai-resume-job-matcher-beta.vercel.app/
+- Backend Health: https://ai-resume-job-matcher-bfaq.onrender.com/health
+ 
 Overview
  
 HireFit is an AI-powered resume analysis and safer optimization platform built to help users understand how well their resume aligns with a job description.
