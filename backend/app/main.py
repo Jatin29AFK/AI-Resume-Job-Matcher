@@ -8,7 +8,12 @@ load_dotenv()
 
 APP_NAME = os.getenv("APP_NAME", "AI Resume Job Matcher API")
 APP_VERSION = os.getenv("APP_VERSION", "1.0.0")
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+
+ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("ALLOWED_ORIGINS", "").split(",")
+    if origin.strip()
+]
 
 app = FastAPI(
     title=APP_NAME,
@@ -25,7 +30,6 @@ app.add_middleware(
 )
 
 app.include_router(matcher_router)
-
 
 @app.get("/")
 def root():
