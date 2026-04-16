@@ -13,9 +13,7 @@ async function postForm(endpoint, formData) {
     try {
       const errorData = await response.json()
       if (errorData.detail) errorMessage = errorData.detail
-    } catch {
-      // ignore parse failure
-    }
+    } catch {}
     throw new Error(errorMessage)
   }
 
@@ -32,4 +30,21 @@ export async function tailorResume(formData) {
 
 export async function compareMultipleJDs(formData) {
   return postForm('/matcher/compare-jds', formData)
+}
+
+export async function incrementVisitorCount() {
+  const response = await fetch(`${API_BASE_URL}/matcher/visitor-count/increment`, {
+    method: 'POST',
+  })
+
+  if (!response.ok) {
+    let errorMessage = 'Failed to update visitor count.'
+    try {
+      const errorData = await response.json()
+      if (errorData.detail) errorMessage = errorData.detail
+    } catch {}
+    throw new Error(errorMessage)
+  }
+
+  return response.json()
 }

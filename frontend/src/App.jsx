@@ -33,6 +33,7 @@ import {
   analyzeResume,
   tailorResume,
   compareMultipleJDs,
+  incrementVisitorCount,
 } from './services/api'
 
 function cloneFormData(formData) {
@@ -206,28 +207,20 @@ function getTabStatuses(result, tailorResult, compareResult) {
   }, [theme])
 
   useEffect(() => {
-    const registerVisitor = async () => {
-      if (hasRegisteredVisit.current) return
-      hasRegisteredVisit.current = true
+  const registerVisitor = async () => {
+    if (hasRegisteredVisit.current) return
+    hasRegisteredVisit.current = true
 
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/matcher/visitor-count/increment`, {
-          method: 'POST',
-        })
-
-        if (!response.ok) {
-          throw new Error('Failed to update visitor count')
-        }
-
-        const data = await response.json()
-        setVisitorCount(data.count)
-      } catch (error) {
-        console.error('Visitor counter error:', error)
-      }
+    try {
+      const data = await incrementVisitorCount()
+      setVisitorCount(data.count)
+    } catch (error) {
+      console.error('Visitor counter error:', error)
     }
+  }
 
-    registerVisitor()
-  }, [])
+  registerVisitor()
+}, [])
 
   const handleTailorResume = async () => {
     if (!lastSubmission) {
